@@ -50,7 +50,19 @@ app.get('/all_recipes', async (req, res) => {
         res.send({ message: 'cannot find data' })
     }
 })
+/* POST A RECIPE */
 
+app.post('/all_recipes', async (req, res) => {
+    console.log(req.body);
+    try {
+        const result = await allRecipes.insertOne(req.body);
+        res.send(result)
+    }
+    catch (err) {
+        res.send({ message: err.message })
+    }
+
+})
 
 /*
 DELETING A RECIPE
